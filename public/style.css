@@ -91,6 +91,16 @@ i {
   padding: 30px;
 }
 
+#clear-all {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+#clear-all i:hover {
+  color: red;
+  transition: all 0.3s ease-in-out;
+}
+
 .hidden {
   display: none;
 }
