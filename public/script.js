@@ -43,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // textarea
     $("<textarea/>", {
-      class: "col-8 col-md-10 description",
+      class: "col-8 col-md-10 description future",
+      
     })
       .attr("rows", "3")
       .appendTo(`#hour-${h}`);
@@ -63,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .attr("aria-hidden", "true")
       .appendTo(`#saveBtn-${h}`);
   });
+
+
     //! clear all
   $("<button/>", {
     id: `clear-all`,
@@ -72,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearPlans(e);
     },
   }).appendTo(`.btn-container`);
+
 
   const saveDayPlan = () => {
     // Get all button elements by class
@@ -88,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const description = timeBlock.find(".description").val();
       console.log(description.length);
       if (description.length === 0 || description === "") {
-        alert("There is no data to save!");
+        alert("There is nothing to save!");
         return;
       }
       // Save the description in local storage with key is id
@@ -109,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
+
   const clearSpecPlan = (key) => {
     // Alert to confirm user action
     const confirm = window.confirm("Are you sure to clear this data?");
@@ -121,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+
   const clearPlans = (e) => {
     if (localStorage.length === 0) {
       window.alert("You have nothing there !");
@@ -131,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirm = window.confirm("Are you sure to clear all data?");
 
     if (confirm) {
-      // Clear all storage
+      // Clearing all storage
       localStorage.clear(); 
       $(".time-block .description").val("");
       $(`.time-block .text-center .delete-icon`).addClass("hidden");
@@ -149,112 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //^-------------------------vanilla JavaScript
-// const businessHoursArr = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-// document.addEventListener("DOMContentLoaded", function () {
-
-//   const curDate = dayjs().format("dddd, MMMM, YYYY");
-//   const curHour = dayjs().hour();
-  
-//   document.getElementById("currentDay").textContent = curDate;
-
-//   //^ Getting the time based on the current hour (past, present, future)
-//   const getTime = (h) =>
-//     curHour < h ? "future" : curHour > h ? "past" : "present";
-
-//   const showHideDeleteIcon = (str) => {
-//     const storageKeys = Object.keys(localStorage);
-//     return storageKeys.includes(str) ? "" : "hidden";
-//   };
-
-//    // Create time block content element depend on business hours
-//    businessHoursArr.forEach((h) => {
-//     // Time block
-//     const timeBlock = document.createElement("div");
-//     timeBlock.setAttribute("id", `hour-${h}`);
-//     timeBlock.setAttribute("class", `row time-block ${getTime(h)}`);
-//     document.getElementById("time-block-container").appendChild(timeBlock);
-
-//     // Create business hour text
-//     const hourText = document.createElement("div");
-//     hourText.setAttribute("id", `text-center-${h}`);
-//     hourText.setAttribute("class", "col-2 col-md-1 hour text-center py-3");
-//     timeBlock.appendChild(hourText);
-
-//     const hourTextP = document.createElement("p");
-//     hourTextP.textContent = `${h}:00`;
-//     hourText.appendChild(hourTextP);
-
-//     // Create delete icon
-//     const deleteIcon = document.createElement("i");
-//     deleteIcon.setAttribute("class", `delete-icon fas fa-trash ${showHideDeleteIcon(`hour-${h}`)}`);
-//     deleteIcon.setAttribute("aria-hidden", "true");
-//     deleteIcon.addEventListener("click", () => clearSpecificWorkPlan(`hour-${h}`));
-//     hourText.appendChild(deleteIcon);
-
-//     // Create textarea
-//     const descriptionTextArea = document.createElement("textarea");
-//     descriptionTextArea.setAttribute("class", "col-8 col-md-10 description");
-//     descriptionTextArea.setAttribute("rows", "3");
-//     timeBlock.appendChild(descriptionTextArea);
-
-//     // Create save button
-//     const saveButton = document.createElement("button");
-//     saveButton.setAttribute("id", `saveBtn-${h}`);
-//     saveButton.setAttribute("class", "btn saveBtn col-2 col-md-1");
-//     saveButton.setAttribute("aria-label", "save");
-//     timeBlock.appendChild(saveButton);
-
-//     // Create save icon
-//     const saveIcon = document.createElement("i");
-//     saveIcon.setAttribute("class", "fas fa-save");
-//     saveIcon.setAttribute("aria-hidden", "true");
-//     saveButton.appendChild(saveIcon);
-//     saveButton.addEventListener("click", function (e) {
-//       const timeBlock = this.closest(".time-block");
-//       const id = timeBlock.getAttribute("id");
-//       const description = timeBlock.querySelector(".description").value;
-//       if (!description || description.length === 0) {
-//         alert("There is no data to save!");
-//         return;
-//       }
-//       localStorage.setItem(id, JSON.stringify(description));
-//       document.querySelector(`#${id} .text-center .delete-icon`).classList.remove("hidden");
-//     });
-//   });
-
-//   const clearSpecificWorkPlan = (key) => {
-//     const confirm = window.confirm("Are you sure to clear this data?");
-//     if (confirm) {
-//       localStorage.removeItem(key);
-//       document.querySelector(`#${key} .description`).value = "";
-//       document.querySelector(`#${key} .text-center .delete-icon`).classList.add("hidden");
-//     }
- 
-//   };
-
-//   // Clear all the work plan in local storage
-//   const clearAllWorkPlans = (e) => {
-//     // Check if local storage has data
-//     if (localStorage.length === 0) {
-//       window.alert("There is no data!");
-//       return;
-//     }
-
-//     // Show a browser alert to confirm user action
-// const confirmClear = confirm("Are you sure to clear all data?");
-// if (confirmClear) {
-//   localStorage.clear();
-//   document.querySelectorAll(".time-block .description").forEach((el) => {
-//     el.value = "";
-//   });
-//   document.querySelectorAll(".time-block .text-center .delete-icon").forEach((el) => {
-//     el.classList.add("hidden");
-//   });
-// }
-//   saveWorkPlanData();
-//   retrieveWorkPlanData();
-// });
 //^___________________________________
 
 
