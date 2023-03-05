@@ -4,9 +4,9 @@
 
 ## Links
 
-- The repo of the note app: [Source Code]()
+- The repo of the note app: [Source Code](https://github.com/EshuShango/Day-Planner-app)
 
-- Here is the link of live demo app: [Demo]()
+- Here is the link of live demo app: [Demo](https://eshushango.github.io/Day-Planner-app/)
 
 ## Description 🔎
 

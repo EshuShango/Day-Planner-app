@@ -1,5 +1,6 @@
 //! -------------------------
 
+//* Used an Arr
 const hoursArray = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -9,19 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#currentDay").text(`${curDate}`);
 
   // Get the time base on current hour (past, present, future)
-  const time = (h) => curHour < h ? "future" : curHour > h ? "past" : "present";
+  const time = (h) =>
+    curHour < h ? "future" : curHour > h ? "past" : "present";
 
-  const deleteIcon = (str) => Object.keys(localStorage).includes(str) ? "" : "hidden";
+  const deleteIcon = (str) =>
+    Object.keys(localStorage).includes(str) ? "" : "hidden";
 
-  // Create time block content element depend on business hours
   hoursArray.forEach((h) => {
-    // Time block
+    //! Time block
     $("<div/>", {
       id: `hour-${h}`,
       class: `row time-block ${time(h)}`,
     }).appendTo("#time-block-container");
 
-    // hr txt
+    //! hr txt
     $("<div/>", {
       id: `text-center-${h}`,
       class: "col-2 col-md-1 hour text-center py-3",
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       text: `${h}:00`,
     }).appendTo(`#text-center-${h}`);
 
-    // delete icon
+    //! delete icon
     $("<i/>", {
       class: `delete-icon fas fa-trash ${deleteIcon(`hour-${h}`)}`,
       click: () => {
@@ -41,10 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .attr("aria-hidden", "true")
       .appendTo(`#text-center-${h}`);
 
-    // textarea
+    //! textarea
     $("<textarea/>", {
       class: "col-8 col-md-10 description future",
-      
     })
       .attr("rows", "3")
       .appendTo(`#hour-${h}`);
@@ -65,8 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .appendTo(`#saveBtn-${h}`);
   });
 
-
-    //! clear all
+  //! clear all
   $("<button/>", {
     id: `clear-all`,
     class: "btn btn-danger",
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
       clearPlans(e);
     },
   }).appendTo(`.btn-container`);
-
 
   const saveDayPlan = () => {
     // Get all button elements by class
@@ -102,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-  
   const getDayPlan = () => {
     $(".time-block").each(function () {
       let id = $(this).attr("id");
@@ -113,10 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-
   const clearSpecPlan = (key) => {
     // Alert to confirm user action
-    const confirm = window.confirm("Are you sure to clear this data?");
+    const confirm = window.confirm("You sure you want to clear your plan?");
 
     if (confirm) {
       // Clear local storage by key
@@ -126,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-
   const clearPlans = (e) => {
     if (localStorage.length === 0) {
       window.alert("You have nothing there !");
@@ -134,11 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Alert to confirm user action
-    const confirm = window.confirm("Are you sure to clear all data?");
+    const confirm = window.confirm("Your sure you want to clear all your plans?");
 
     if (confirm) {
       // Clearing all storage
-      localStorage.clear(); 
+      localStorage.clear();
       $(".time-block .description").val("");
       $(`.time-block .text-center .delete-icon`).addClass("hidden");
     }
@@ -150,13 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //! -------------------------
 
-
-
-
-
 //^-------------------------vanilla JavaScript
-
+  //* I don't like jQuery lol, but it's useful...
 //^___________________________________
-
-
-
